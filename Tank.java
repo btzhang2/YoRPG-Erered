@@ -5,13 +5,16 @@
 
 public class Tank extends Character{
     public Tank(){
+	super();
 	name = "no body";
-	hp = 150;
-	strength = 25;
-	basedef = 40;
+	hp = 300;
+	strength = 35;
+	basedef = 50;
 	baseatk = .3;
 	defense = basedef;
 	atk = baseatk;
+	magicPower = 50;
+	move = "Shield smash";
     }
     public Tank(String n){
 	this();

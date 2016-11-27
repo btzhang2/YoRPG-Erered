@@ -5,13 +5,16 @@ public//Team ererd: Jasper Cheung, Jake Zaia, Brandon Zhang
  class Pirate extends Character{
     
     public Pirate(){
+	super();
 	name = "no body";
-	hp = 125;
-	strength = 100;
-	basedef = 40;
+	hp = 200;
+	strength = 110;
+	basedef = 35;
 	baseatk = .4;
 	defense = basedef;
 	atk = baseatk;
+	magicPower = 100;
+	move = "cutlass slash";
     }
     public void specialize(){
 	defense = basedef / 2;

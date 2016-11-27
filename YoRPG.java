@@ -78,7 +78,7 @@ public class YoRPG
 	}
 	catch ( IOException e ) { }
 
-	s = "What class would you like to be?";
+	s = "What class would you like to be? Your choices are Warrior, Mage, Rogue, Pirate, and Tank.";
 	System.out.print( s );
 	
 	try {
@@ -96,8 +96,8 @@ public class YoRPG
 	if (type.equals("Mage")){
 	    pat = new Mage(name);
 	}
-	if (type.equals("Mercenary")){
-	    pat = new Mercenary(name);
+	if (type.equals("Tank")){
+	    pat = new Tank(name);
 	}
 	if (type.equals("Pirate")){
 	    pat = new Pirate(name);
@@ -132,22 +132,36 @@ public class YoRPG
 		// If you land a hit, you incur greater damage,
 		// ...but if you get hit, you take more damage.
 		try {
-		    System.out.println( "\nDo you feel lucky?" );
-		    System.out.println( "\t1: Nay.\n\t2: Aye!" );
+		    System.out.println( "\nWhat would you like to do?" );
+		    System.out.println( "\t1: Normal Attack\n\t2: Double Edged Sword Attack\n\t3: Flee");
+		    if (pat.getSpecialAtkBar() >= 4)
+			System.out.println("\t4:YOU CAN NOW USE YOUR SPECIAL ATTACK");
 		    i = Integer.parseInt( in.readLine() );
 		}
 		catch ( IOException e ) { }
 
-		if ( i == 2 )
-		    pat.specialize();
-		else
+		if ( i == 1 ){
 		    pat.normalize();
+		    d1 = pat.attack( smaug );
+		    System.out.println( "\n" + pat.getName() + " dealt " + d1 +
+					" points of damage.");
+		}
+		if ( i == 2 ){
+		    pat.specialize();
+		    d1 = pat.attack( smaug );
+		    System.out.println( "\n" + pat.getName() + " dealt " + d1 +
+					" points of damage.");
+		}
+		if ( i ==3  ){
+		    pat.setHP(0);
+		}
+		if ( i == 4 ){
+		    d1 = pat.specialMove(smaug);
+		    System.out.println("\n" + pat.getName() +  " used " + pat.getMove() + " and dealt " + d1 + " points of damage.");
+		}
 
-		d1 = pat.attack( smaug );
 		d2 = smaug.attack( pat );
 
-		System.out.println( "\n" + pat.getName() + " dealt " + d1 +
-				    " points of damage.");
 
 		System.out.println( "\n" + "Ye Olde Monster smacked " + pat.getName() +
 				    " for " + d2 + " points of damage.");
@@ -166,11 +180,17 @@ public class YoRPG
 		System.out.println( "HuzzaaH! Ye olde monster hath been slain!" );
 		return true;
 	    }
-	    //option 3: the beast slays you
-	    else if ( !pat.isAlive() ) {
+	    //option 3: you run away
+	    else if( !pat.isAlive() ) {
+		System.out.println( "Ye olde self hath run away from thy path of the hero");
+		return false;
+	    }
+	    //option 4: the beast slays you
+	    else if ( !pat.isAlive() && smaug.isAlive() ) {
 		System.out.println( "Ye olde self hath expired. You got dead." );
 		return false;
 	    }
+
 	}//end else
 
 	return true;

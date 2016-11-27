@@ -6,13 +6,16 @@
 public class Rogue extends Character{
     
     public Rogue(){
+	super();
 	name = "no body";
-	hp = 100;
+	hp = 200;
 	strength = 50;
 	basedef = 20;
 	baseatk = .6;
 	defense = basedef;
 	atk = baseatk;
+	magicPower = 110;
+	move = "sneak attack";
     }
    public void specialize(){
 	defense = basedef / 2;

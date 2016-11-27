@@ -5,13 +5,16 @@
 public class Warrior extends Character{
     
     public Warrior(){
+	super();
 	name = "no body";
-	hp = 125;
+	hp = 250;
 	strength = 100;
 	basedef = 40;
 	baseatk = .4;
 	defense = basedef;
 	atk = baseatk;
+	magicPower = 75;
+	move = "decisive strike";
     }	    
     public Warrior(String n){
 	this();

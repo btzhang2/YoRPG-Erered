@@ -10,6 +10,9 @@ public class Monster extends Character{
 	defense = 20;
 	atk = 1;
     }
+
+    public void specialize(){}
+    public void normalize(){}
     public  String about(){
 	return "He's just lonely";}
 }
